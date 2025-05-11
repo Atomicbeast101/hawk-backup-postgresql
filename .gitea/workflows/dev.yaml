@@ -1,4 +1,4 @@
-name: Build/Push App for Production
+name: Build/Push App for Dev
 on:
   push:
     branches:
