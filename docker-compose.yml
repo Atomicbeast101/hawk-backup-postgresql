@@ -1,0 +1,44 @@
+services:
+  sftp:
+    container_name: sftp
+    image: atmoz/sftp:latest
+    restart: no
+    attach: false
+    command: example:1234:::upload
+    networks:
+      - app
+  postgresql:
+    container_name: postgresql
+    image: postgres:latest
+    restart: no
+    attach: false
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: bckupmgr
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ./tests/postgresql_init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app
+  app:
+    container_name: app
+    restart: no
+    build:
+      context: .
+    environment:
+      DB_SERVER: postgresql
+      DB_USERNAME: bckupmgr
+      DB_PASSWORD: 1234
+      # BACKUP_TYPE: local
+      BACKUP_TYPE: sftp
+      BACKUP_SFTP_HOST: sftp
+      BACKUP_SFTP_USERNAME: example
+      BACKUP_SFTP_PASSWORD: 1234
+    networks:
+      - app
+    depends_on:
+      - sftp
+      - postgresql
+
+networks:
+  app:

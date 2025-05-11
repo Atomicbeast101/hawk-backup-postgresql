@@ -1,0 +1,4 @@
+postgresql-client
+sshpass
+openssh
+zip
