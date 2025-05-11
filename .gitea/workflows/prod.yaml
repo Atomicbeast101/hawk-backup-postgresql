@@ -21,7 +21,7 @@ jobs:
       image: gitea/runner-images:ubuntu-latest
     strategy:
       matrix:
-        architecture: [amd64, arm64, aarch64]
+        architecture: [amd64]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
