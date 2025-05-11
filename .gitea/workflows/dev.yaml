@@ -11,6 +11,7 @@ env:
   DOCKER_CERT_PATH: "/certs/client"
   IMAGE_BASE: ${{ vars.LOCAL_ACR_URL }}/${{ vars.LOCAL_ACR_USERNAME }}
   OS_VERSION: 3.21
+  IMAGE_TAG_ENDING: -dev
 
 jobs:
   release:
@@ -61,8 +62,8 @@ jobs:
             OS_VERSION=${{ env.OS_VERSION }}
             ARCH=${{ matrix.architecture }}
           tags: |
-            ${{ env.IMAGE_BASE }}/${{ steps.meta.outputs.REPO_NAME }}:dev-${{ steps.meta.outputs.DATE_RELEASE }}
-            ${{ env.IMAGE_BASE }}/${{ steps.meta.outputs.REPO_NAME }}:dev-latest
+            ${{ env.IMAGE_BASE }}/${{ steps.meta.outputs.REPO_NAME }}:${{ steps.meta.outputs.DATE_RELEASE }}${{ env.IMAGE_TAG_ENDING }}
+            ${{ env.IMAGE_BASE }}/${{ steps.meta.outputs.REPO_NAME }}:latest${{ env.IMAGE_TAG_ENDING }}
 
   report:
     name: Report
@@ -85,7 +86,7 @@ jobs:
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
         with:
           title: Gitea DevOps
-          message: ✅ Released ${{ steps.meta.outputs.REPO_NAME }}:dev-${{ steps.meta.outputs.DATE_RELEASE }} app!
+          message: ✅ Released ${{ steps.meta.outputs.REPO_NAME }}:${{ steps.meta.outputs.DATE_RELEASE }}${{ env.IMAGE_TAG_ENDING }} app!
 
       - name: Report of Failure
         if: needs.release.result != 'success'
@@ -95,4 +96,4 @@ jobs:
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
         with:
           title: Gitea DevOps
-          message: ❌ Unable to release ${{ steps.meta.outputs.REPO_NAME }}:dev-${{ steps.meta.outputs.DATE_RELEASE }} app.
+          message: ❌ Unable to release ${{ steps.meta.outputs.REPO_NAME }}:${{ steps.meta.outputs.DATE_RELEASE }}${{ env.IMAGE_TAG_ENDING }} app.
