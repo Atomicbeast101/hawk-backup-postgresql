@@ -29,11 +29,11 @@ services:
       DB_SERVER: database
       DB_USERNAME: bckupmgr
       DB_PASSWORD: 1234
-      # BACKUP_TYPE: local
-      BACKUP_TYPE: sftp
-      BACKUP_SFTP_HOST: sftp
-      BACKUP_SFTP_USERNAME: example
-      BACKUP_SFTP_PASSWORD: 1234
+      BACKUP_TYPE: local
+      # BACKUP_TYPE: sftp
+      # BACKUP_SFTP_HOST: sftp
+      # BACKUP_SFTP_USERNAME: example
+      # BACKUP_SFTP_PASSWORD: 1234
     networks:
       - app
     depends_on:
