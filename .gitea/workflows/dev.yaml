@@ -29,7 +29,7 @@ jobs:
         id: meta
         run: |
           echo REPO_NAME=$(echo ${GITHUB_REPOSITORY} | awk -F"/" '{print $2}') >> $GITHUB_OUTPUT
-          echo DATE_RELEASE=$(echo "`date +'%Y%m%d'`") >> $GITHUB_OUTPUT
+          echo DATE_RELEASE=$(echo "`date +'%Y.%m.%d'`") >> $GITHUB_OUTPUT
 
       - name: Install QEMU
         run: |
@@ -75,7 +75,7 @@ jobs:
         id: meta
         run: |
           echo REPO_NAME=$(echo ${GITHUB_REPOSITORY} | awk -F"/" '{print $2}') >> $GITHUB_OUTPUT
-          echo DATE_RELEASE=$(echo "`date +'%Y%m%d'`") >> $GITHUB_OUTPUT
+          echo DATE_RELEASE=$(echo "`date +'%Y.%m.%d'`") >> $GITHUB_OUTPUT
 
       - name: Report of Success
         if: needs.release.result == 'success'
