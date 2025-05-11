@@ -21,8 +21,6 @@ RUN mkdir /app
 RUN mkdir /backups
 COPY os_packages.txt /
 RUN xargs -a os_packages.txt apk add --no-cache
-# COPY pip_packages.txt /
-# RUN pip install --no-cache-dir --break-system-packages -r /pip_packages.txt
 RUN rm /os_packages.txt
 
 # Transfer Files Over
