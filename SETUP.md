@@ -1,6 +1,6 @@
 # Docker Guide
 
-Spin up a docker container (see [docker-compose.yml](docker-compose.yml) for example) and define the environment variables (see below for options). You can remove `sftp` and `postgresql` services if you are using an external service.
+Spin up a docker container (see [docker-compose.yml](docker-compose.yml) for example) and define the environment variables (see below for options). You can remove `sftp` and `database` services if you are using an external service.
 
 # Environment Variables
 
