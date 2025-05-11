@@ -29,4 +29,6 @@ By default, cronjob schedule is set to daily backups. To change the backup sched
 
 For testing purposes, to manually run the backup script to ensure it works for automated scheduling, just run this command:
 
-`docker compose exec app sh /app/backup.sh`
+```bash
+docker compose exec app sh /app/backup.sh
+```
